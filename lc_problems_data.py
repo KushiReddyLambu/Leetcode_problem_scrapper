@@ -9,7 +9,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 import time
 
 # Define the chromedriver service
-PATH = "C:\Program Files (x86)\chromedriver.exe"
+PATH = "chromedriver.exe"
 s = Service(PATH)
 
 # Instantiate the webdriver
