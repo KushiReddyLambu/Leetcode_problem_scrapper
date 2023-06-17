@@ -1,0 +1,97 @@
+/* CSS code for style.css */
+
+/* Overall layout */
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-bottom: 20px;
+  background-color: #76d5db;
+  border-radius: 10px;
+}
+
+/* Form styling */
+.form {
+  margin-bottom: 30px;
+}
+
+form {
+  display: flex;
+  align-items: center;
+}
+
+input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  font-size: 14px;
+  background-color: #2faeb7;
+  border-radius: 10px;
+  margin-left: 20px;
+}
+
+input[type="submit"] {
+  margin-left: 10px;
+  margin-right: 20px;
+  padding: 12px 24px;
+  font-size: 14px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Results styling */
+.results {
+  font-size: 20px;
+}
+
+.results a {
+  display: block;
+  margin-bottom: 5px;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  padding: 10px;
+}
+
+.results a:hover {
+  text-decoration: underline;
+  background-color: #ffc731;
+  color: #1e343b;
+}
+
+body{
+  font-family: roboto;
+}
+
+/* Heading animation */
+h1 {
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  background-color: #2faeb7;
+  padding: 30px;
+  border-radius: 10px 10px 0 0;
+  animation: fadeInDown 1s ease-in-out;
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+h3{
+    text-align: center;
+    color: white;
+}

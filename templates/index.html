@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ProblemHunt</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  </head>
+  <body>
+    <div class="container">
+      <h1>ProblemHunt</h1>
+      <h3>Effortlessly access relevant LeetCode coding problems with our intuitive search</h3>
+    <div class="form">
+      <form method="POST">
+        {{ form.hidden_tag() }} {{ form.search(placeholder="Enter your search query") }} {{ form.submit() }}
+      </form>
+    </div>
+    <div class="results">
+        {% for result in results %}
+           <div><a href="{{ result['Question Link'] }}">{{ result['heading'] }}</a></div>
+        {% endfor %}
+    </div>
+    </div>
+  </body>
+</html>
