@@ -1,7 +1,6 @@
 import math
-import re
 
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 
@@ -110,16 +109,12 @@ def calculate_sorted_order_of_documents(query_terms):
 
     potential_documents = dict(sorted(potential_documents.items(), key=lambda item: item[1], reverse=True))
 
-    # if no doc found
-    if (len(potential_documents) == 0):
-        print("No matching question found. Please search with more relevant terms.")
-
     for document_index in potential_documents:
         ans.append({"Question Link": problem_link(int(document_index)), "heading": problem_title(int(document_index))})
     return ans
 
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static')
 app.config['SECRET_KEY'] = 'your-secret-key'
 
 
@@ -129,17 +124,9 @@ app.config['SECRET_KEY'] = 'your-secret-key'
 # print(query_terms)
 # print(calculate_sorted_order_of_documents(query_terms))
 
-
 class SearchForm(FlaskForm):
     search = StringField('Enter your search query')
     submit = SubmitField('SEARCH')
-
-
-@app.route("/<query>")
-def return_links(query):
-    q_terms = [term.lower() for term in query.strip().split()]
-    return jsonify(calculate_sorted_order_of_documents(q_terms)[:20:])
-
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
