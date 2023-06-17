@@ -6,12 +6,12 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 
 def problem_link(num):
-    with open('../Qdata/Qindex.txt', 'r') as f:
+    with open('./Qdata/Qindex.txt', 'r') as f:
         links = f.readlines()
     return links[num]
 
 def problem_title(num):
-    with open('../Qdata/index.txt', 'r') as f:
+    with open('./Qdata/index.txt', 'r') as f:
         headings = f.readlines()
     return str(headings[num].split(' ', 1)[1])
 
