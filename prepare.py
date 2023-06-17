@@ -29,7 +29,7 @@ def get_words1(paragraph):
 
 # search in every problem till you reach the word "Example" and add the list of words to the documents
 target_word = "Example"
-QDATA_FOLDER = "../Qdata"
+QDATA_FOLDER = "./Qdata"
 # we store the list of words of every problem in documents
 documents = []
 body=""
