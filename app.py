@@ -20,9 +20,9 @@ def problem_title(num):
 
 def load_vocab():
     vocab = {}
-    with open('vocab.txt', 'r') as f:
+    with open('vocab.txt', 'r',encoding='utf-8') as f:
         vocab_terms = f.readlines()
-    with open('idf-values.txt', 'r') as f:
+    with open('idf-values.txt', 'r',encoding='utf-8') as f:
         idf_values = f.readlines()
 
     for (term, idf_value) in zip(vocab_terms, idf_values):
@@ -33,7 +33,7 @@ def load_vocab():
 
 def load_documents():
     documents = []
-    with open('documents.txt', 'r') as f:
+    with open('documents.txt', 'r',encoding='utf-8') as f:
         documents = f.readlines()
     documents = [document.strip().split() for document in documents]
 
@@ -44,7 +44,7 @@ def load_documents():
 
 def load_inverted_index():
     inverted_index = {}
-    with open('inverted-index.txt', 'r') as f:
+    with open('inverted-index.txt', 'r',encoding='utf-8') as f:
         inverted_index_terms = f.readlines()
 
     for row_num in range(0, len(inverted_index_terms), 2):
@@ -109,9 +109,9 @@ def calculate_sorted_order_of_documents(query_terms):
         potential_documents[document] /= len(query_terms)
 
     potential_documents = dict(sorted(potential_documents.items(), key=lambda item: item[1], reverse=True))
-    
-     # if no doc found
-    if (len(potential_docs) == 0):
+
+    # if no doc found
+    if (len(potential_documents) == 0):
         print("No matching question found. Please search with more relevant terms.")
 
     for document_index in potential_documents:
@@ -133,7 +133,8 @@ app.config['SECRET_KEY'] = 'your-secret-key'
 class SearchForm(FlaskForm):
     search = StringField('Enter your search query')
     submit = SubmitField('SEARCH')
-    
+
+
 @app.route("/<query>")
 def return_links(query):
     q_terms = [term.lower() for term in query.strip().split()]
