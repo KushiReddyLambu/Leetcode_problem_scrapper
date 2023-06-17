@@ -5,19 +5,22 @@ from flask import Flask, render_template, request, jsonify
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 
+
 def problem_link(num):
-    with open('Qdata/Qindex.txt', 'r', encoding = 'utf-8') as f:
+    with open('Qdata/Qindex.txt', 'r') as f:
         links = f.readlines()
     return links[num]
 
+
 def problem_title(num):
-    with open('Qdata/index.txt', 'r', encoding = 'utf-8') as f:
+    with open('Qdata/index.txt', 'r') as f:
         headings = f.readlines()
     return str(headings[num].split(' ', 1)[1])
 
+
 def load_vocab():
     vocab = {}
-    with open('vocab.txt', 'r', encoding = 'utf-8') as f:
+    with open('vocab.txt', 'r', encoding='utf-8') as f:
         vocab_terms = f.readlines()
     with open('idf-values.txt', 'r', encoding='utf-8') as f:
         idf_values = f.readlines()
@@ -76,13 +79,13 @@ def get_tf_dictionary(term):
         except (ZeroDivisionError, ValueError, IndexError) as e:
             print(e)
             print(doc)
-        
 
     return tf_values
 
+
 # tf_values is a dictionary which stores the list of documents the term is present in and its tf-value for every document
 def get_idf_value(term):
-    return math.log((1+len(documents)) /(1+ vocab_idf_values[term]))
+    return math.log((1 + len(documents)) / (1 + vocab_idf_values[term]))
 
 
 def calculate_sorted_order_of_documents(query_terms):
@@ -108,11 +111,14 @@ def calculate_sorted_order_of_documents(query_terms):
     potential_documents = dict(sorted(potential_documents.items(), key=lambda item: item[1], reverse=True))
 
     for document_index in potential_documents:
-        ans.append({"Question Link": problem_link(int(document_index)),"heading": problem_title(int(document_index))})
+        ans.append({"Question Link": problem_link(int(document_index)), "heading": problem_title(int(document_index))})
     return ans
+
 
 app = Flask(__name__, static_url_path='/static')
 app.config['SECRET_KEY'] = 'your-secret-key'
+
+
 # query_string = input('Enter your query: ')
 # query_terms = [term.lower() for term in query_string.strip().split()]
 #
