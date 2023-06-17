@@ -29,7 +29,7 @@ def get_words1(paragraph):
 
 # search in every problem till you reach the word "Example" and add the list of words to the documents
 target_word = "Example"
-QDATA_FOLDER = "./Qdata"
+QDATA_FOLDER = "Qdata"
 # we store the list of words of every problem in documents
 documents = []
 body=""
@@ -65,17 +65,17 @@ for index in range(1,2156):
 vocab = dict(sorted(vocab.items(), key=lambda item: item[1], reverse=True))
 
 # save the vocab(list of all unique words) in a text file
-with open('./vocab.txt', 'w', encoding='utf-8') as f:
+with open('vocab.txt', 'w', encoding='utf-8') as f:
     for key in vocab.keys():
         f.write("%s\n" % key)
 
 # save the idf values in a text file
-with open('./idf-values.txt', 'w', encoding='utf-8') as f:
+with open('idf-values.txt', 'w', encoding='utf-8') as f:
     for key in vocab.keys():
         f.write("%s\n" % vocab[key])
 
 # save the documents in a text file
-with open('./documents.txt', 'w', encoding='utf-8') as f:
+with open('documents.txt', 'w', encoding='utf-8') as f:
     for document in documents:
         f.write("%s\n" % ' '.join(document))
 
@@ -89,7 +89,7 @@ for index, document in enumerate(documents):    # duplicates may be present in d
             inverted_index[token].append(index)
 
 # save the inverted index in a text file
-with open('./inverted-index.txt', 'w', encoding='utf-8') as f:
+with open('inverted-index.txt', 'w', encoding='utf-8') as f:
     for key in inverted_index.keys():
         f.write("%s\n" % key)
         f.write("%s\n" % ' '.join([str(doc_id) for doc_id in inverted_index[key]]))
